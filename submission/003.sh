@@ -2,8 +2,12 @@
 
 # How many new outputs were created by block 123,456?
 
-pathconf="-conf=/Users/micheldiz/.bitcoin/bitcoin.conf"
-
+# Alteração para evitar problemas com CI
+if [[ "$(uname)" == "Darwin" ]]; then
+  pathconf="-conf=/Users/micheldiz/.bitcoin/bitcoin.conf"
+else
+  pathconf=""
+fi
 
 block_hash=$(bitcoin-cli $pathconf getblockhash 123456)
 txns=$(bitcoin-cli $pathconf getblock $block_hash | jq -r '.tx[]')

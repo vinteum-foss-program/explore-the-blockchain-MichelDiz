@@ -4,7 +4,13 @@
 #   message: `1E9YwDtYf9R29ekNAfbV7MvB4LNv7v3fGa`
 #   signature: `HCsBcgB+Wcm8kOGMH8IpNeg0H4gjCrlqwDf/GlSXphZGBYxm0QkKEPhh9DTJRp2IDNUhVr0FhP9qCqo2W0recNM=`
 
-bitcoin-cli -conf=/Users/micheldiz/.bitcoin/bitcoin.conf verifymessage "1E9YwDtYf9R29ekNAfbV7MvB4LNv7v3fGa" \
+if [[ "$(uname)" == "Darwin" ]]; then
+  pathconf="-conf=/Users/micheldiz/.bitcoin/bitcoin.conf"
+else
+  pathconf=""
+fi
+
+bitcoin-cli $pathconf verifymessage "1E9YwDtYf9R29ekNAfbV7MvB4LNv7v3fGa" \
 "HCsBcgB+Wcm8kOGMH8IpNeg0H4gjCrlqwDf/GlSXphZGBYxm0QkKEPhh9DTJRp2IDNUhVr0FhP9qCqo2W0recNM=" \
 "1E9YwDtYf9R29ekNAfbV7MvB4LNv7v3fGa"
 

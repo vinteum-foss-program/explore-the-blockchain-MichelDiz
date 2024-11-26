@@ -1,6 +1,11 @@
 #!/bin/bash
 # Which tx in block 257,343 spends the coinbase output of block 256,128?
-pathconf="-conf=/Users/micheldiz/.bitcoin/bitcoin.conf"
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  pathconf="-conf=/Users/micheldiz/.bitcoin/bitcoin.conf"
+else
+  pathconf=""
+fi
 
 cb_txid=$(bitcoin-cli $pathconf getblock $(bitcoin-cli $pathconf getblockhash 256128) | jq -r '.tx[0]')
 txs=$(bitcoin-cli $pathconf getblock $(bitcoin-cli $pathconf getblockhash 257343) | jq -r '.tx[]')
