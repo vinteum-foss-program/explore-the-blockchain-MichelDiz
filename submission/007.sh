@@ -4,7 +4,7 @@
 
 if [[ "$(uname)" == "Darwin" ]]; then
   pathconf="-conf=/Users/micheldiz/.bitcoin/bitcoin.conf"
-  Local=true
+  Local=${1:-false}
 else
   pathconf=""
 fi
